@@ -17,6 +17,7 @@ def connect(link):
     soup = BeautifulSoup(responce, "html.parser")
     return soup
 
+
 def bad_window_hide():
     try:
         bad_window1 = driver.find_elements(by=By.CLASS_NAME, value='bxmaker__geoip__city__line-question-btn-no js-bxmaker__geoip__city__line-question-btn-no')
@@ -29,10 +30,12 @@ def bad_window_hide():
     except:
         sleep(1)
 
+
 def connect(link):
     responce = requests.get(link).text
     soup = BeautifulSoup(responce, "html.parser")
     return soup
+
 
 def name_search(address):
     block = address.find("div", class_="gr-elem-name")
@@ -58,10 +61,12 @@ def car_model_search(address):
         art_mod.append(name)
     return art_mod[1]
 
+
 def price_search(address):
     block = address.find("div", class_="product-item-detail-price-current")
     price = block.text.strip()
     return price
+
 
 def number_search(block, data_value):
     oe = block.find('div', {'data-value': data_value})
