@@ -10,7 +10,10 @@ from selenium.webdriver.firefox.options import Options
 # Initialize Firefox/Gecko WebDriver
 driver = webdriver.Firefox()
 firefox_options = Options()
-#firefox_options.set_headless()
+
+
+# firefox_options.set_headless()
+
 
 def connect(link):
     responce = requests.get(link).text
@@ -20,7 +23,8 @@ def connect(link):
 
 def bad_window_hide():
     try:
-        bad_window1 = driver.find_elements(by=By.CLASS_NAME, value='bxmaker__geoip__city__line-question-btn-no js-bxmaker__geoip__city__line-question-btn-no')
+        bad_window1 = driver.find_elements(by=By.CLASS_NAME,
+                                           value='bxmaker__geoip__city__line-question-btn-no js-bxmaker__geoip__city__line-question-btn-no')
         bad_window1.click()
     except:
         sleep(1)
@@ -87,9 +91,9 @@ if __name__ == '__main__':
     driver = webdriver.Firefox(executable_path="../Parser_True_Final/geckodriver.exe", options=firefox_options)
     driver.get(url)
     stime = time()
-    #button_element = driver.find_element_by_link_text('Alfa Romeo ')
-    #marks = driver.find_elements_by_class_name('gr-mark-cell__wrapper')
-    #i = 8
+    # button_element = driver.find_element_by_link_text('Alfa Romeo ')
+    # marks = driver.find_elements_by_class_name('gr-mark-cell__wrapper')
+    # i = 8
     marks = driver.find_elements(by=By.CLASS_NAME, value='gr-mark-cell__wrapper')
 
     for i in range(len(marks)):
@@ -100,7 +104,7 @@ if __name__ == '__main__':
 
         bad_window_hide()
 
-        product = driver.find_elements(by = By.CSS_SELECTOR, value = '.gr-row-models > div')
+        product = driver.find_elements(by=By.CSS_SELECTOR, value='.gr-row-models > div')
         try:
             product[0].click()
         except:
@@ -114,7 +118,7 @@ if __name__ == '__main__':
                     continue
         bad_window_hide()
         sleep(7)
-        marks = driver.find_elements(by = By.CLASS_NAME, value = 'gr-filter-checkbox-wrapper')
+        marks = driver.find_elements(by=By.CLASS_NAME, value='gr-filter-checkbox-wrapper')
         k = 0
         for k in range(len(marks)):
             marks[k].click()
@@ -134,7 +138,7 @@ if __name__ == '__main__':
         driver.get(url)
         sleep(5)
 
-    #then parsing
+    # then parsing
     # parsing after search
     with open('../Parser_True_Final/product_links.txt') as fr:
         product_base = fr.read().split('\n')
@@ -199,5 +203,3 @@ if __name__ == '__main__':
     etime = time()
     full_time = (etime - stime) / 60
     print(f'Все ссылки обработаны за {full_time} минут')
-
-
